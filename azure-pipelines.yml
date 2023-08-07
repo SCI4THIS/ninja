@@ -12,8 +12,12 @@ pool:
 steps:
 - script: ./configure.py --bootstrap
   displayName: 'Run Python bootstrap to build ninja'
-- task: PublishPipelineArtifact@1
+- task: CopyFiles@2
   inputs:
-    targetPath: '$(Pipeline.Workspace)/s/ninja'
-    artifact: 'ninja'
-    publishLocation: 'pipeline'
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: 'ninja'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: ninja
