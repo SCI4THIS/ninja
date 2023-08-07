@@ -14,6 +14,6 @@ steps:
   displayName: 'Run Python bootstrap to build ninja'
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)s/ninja'
+    targetPath: '$(Pipeline.Workspace)/s/ninja'
     artifact: 'ninja'
     publishLocation: 'pipeline'
